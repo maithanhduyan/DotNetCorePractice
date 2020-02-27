@@ -52,6 +52,19 @@
             ],
             "problemMatcher": "$msCompile"
         },
-        
+
+         // Build DatabaseConnectionPool Project
+        {
+            "label": "build_DatabaseConnectionPool_Project",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/DatabaseConnectionPool/DatabaseConnectionPool.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
     ]
 }
