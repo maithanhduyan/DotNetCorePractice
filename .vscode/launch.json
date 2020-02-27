@@ -9,9 +9,29 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_AspNetCoreDapperPostgresql_Project",
-            "program": "${workspaceFolder}/src/DotNetCorePractice/AspNetCoreDapperPostgresql/bin/Debug/netcoreapp3.1/AspNetCoreDapperPostgresql.dll",
+            "program": "${workspaceFolder}/src/AspNetCoreDapperPostgresql/bin/Debug/netcoreapp3.1/AspNetCoreDapperPostgresql.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/DotNetCorePractice/AspNetCoreDapperPostgresql",
+            "cwd": "${workspaceFolder}/src/AspNetCoreDapperPostgresql",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch Other Project",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_AspNetCoreDapperPostgresql_Project",
+            "program": "${workspaceFolder}/src/AspNetCoreDapperPostgresql/bin/Debug/netcoreapp3.1/AspNetCoreDapperPostgresql.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/AspNetCoreDapperPostgresql",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
