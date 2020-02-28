@@ -19,7 +19,7 @@ namespace DatabaseConnectionPool.DBConnectionPool
         /// 
         /// </summary>
         public const int PoolSize = 10;
-        string connectionString { get; set; }
+        string ConnectionString { get; set; }
 
         /// <summary>
         /// Create Connection Pool
@@ -28,10 +28,13 @@ namespace DatabaseConnectionPool.DBConnectionPool
         #endregion
 
         #region Constructor
-
+        /// <summary>
+        /// DataSourceConnectionPool
+        /// </summary>
+        /// <param name="configuration"></param>
         public DataSourceConnectionPool(IConfiguration configuration)
         {
-            connectionString = configuration.GetValue<string>("DatabaseInfo:ConnectionString");
+            ConnectionString = configuration.GetValue<string>("DatabaseInfo:ConnectionString");
             Initialize();
         }
         #endregion
@@ -39,10 +42,10 @@ namespace DatabaseConnectionPool.DBConnectionPool
         #region Initial Connection Pool
         private void Initialize()
         {
-            ConnectionPool = new List<IDbConnection>();
+            ConnectionPool = new List<IDbConnection>(PoolSize);
             for (int i = 0; i < PoolSize; i++)
             {
-                IDbConnection dbConnection = new NpgsqlConnection(connectionString);
+                IDbConnection dbConnection = new NpgsqlConnection(ConnectionString);
                 Console.WriteLine("Create new Connection");
                 dbConnection.Open();
                 ConnectionPool.Add(dbConnection);

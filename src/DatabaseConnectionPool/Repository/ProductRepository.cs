@@ -11,7 +11,6 @@ namespace DatabaseConnectionPool.Repository
 {
     public class ProductRepository : IRepository<Product>
     {
-        private readonly ILogger<ProductRepository> _logger;
         public ProductRepository()
         {
         }

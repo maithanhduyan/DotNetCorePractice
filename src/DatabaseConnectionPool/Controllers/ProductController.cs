@@ -1,20 +1,29 @@
 ﻿using DatabaseConnectionPool.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace DatabaseConnectionPool.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductRepository productRepository;
+        private readonly ProductRepository _productRepository;
 
         public ProductController()
         {
-            productRepository = new ProductRepository();
+            _productRepository = new ProductRepository();
         }
         public async Task<IActionResult> Index()
         {
-            var result = await productRepository.FindAll();
+            Console.WriteLine("Client request");
+            var result = await _productRepository.FindAll();
+            return View(result);
+        }
+
+        public async Task<IActionResult> Index2()
+        {
+            Console.WriteLine("Client 2 request");
+            var result = await _productRepository.FindAll();
             return View(result);
         }
     }
