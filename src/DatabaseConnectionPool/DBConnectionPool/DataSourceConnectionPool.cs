@@ -45,7 +45,6 @@ namespace DatabaseConnectionPool.DBConnectionPool
                 IDbConnection dbConnection = new NpgsqlConnection(connectionString);
                 Console.WriteLine("Create new Connection");
                 dbConnection.Open();
-                Console.WriteLine("Opened Connection");
                 ConnectionPool.Add(dbConnection);
                 Console.WriteLine("Add Connection into Pool[" + ConnectionPool.Count + "]");
             }
@@ -60,10 +59,10 @@ namespace DatabaseConnectionPool.DBConnectionPool
             IDbConnection dbConnection = null;
             for (int i = 0; i < PoolSize; i++)
             {
-                if ((int)ConnectionPool[i].State == 1)
+                if (ConnectionPool[i].State == ConnectionState.Open)
                 {
                     dbConnection = ConnectionPool[i];
-                    Console.WriteLine("Connecting Pool....................[" + i + "]");
+                    Console.WriteLine("Connecting Pool[" + i + "]" + ".......[" + dbConnection.State + "]");
                     break;
                 }
                 else

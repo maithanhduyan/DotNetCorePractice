@@ -1,4 +1,5 @@
 using DatabaseConnectionPool.DBConnectionPool;
+using DatabaseConnectionPool.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace DatabaseConnectionPool
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped(typeof(IDataConnectionPoolLogging<>), typeof(DataConnectionPoolLogging<>));
             services.AddSingleton(new DataSourceConnectionPool(Configuration));
         }
 

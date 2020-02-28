@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DatabaseConnectionPool.DBConnectionPool;
 using DatabaseConnectionPool.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,10 @@ namespace DatabaseConnectionPool.Repository
 {
     public class ProductRepository : IRepository<Product>
     {
-        public ProductRepository() { }
+        private readonly ILogger<ProductRepository> _logger;
+        public ProductRepository()
+        {
+        }
         internal IDbConnection Connection
         {
             get
@@ -25,7 +29,8 @@ namespace DatabaseConnectionPool.Repository
 
         public async Task<IEnumerable<Product>> FindAll()
         {
-            IEnumerable<Product> products = Connection.Query<Product>("SELECT * FROM product");
+            IEnumerable<Product> products = await Connection.QueryAsync<Product>("SELECT * FROM product");
+            //_logger.LogInformation("Connection State :" + Connection.State);
             return products;
         }
 
